@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Student Journal – Financial Education Through Gold Research</title>
+  <meta name="description" content="A student-run educational journal from Mato Grosso do Sul, Brazil, where high school students research and publish articles about gold as part of their financial education curriculum.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     TOP BAR
+     ════════════════════════════════════════════ -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-bar-live">
+      <div class="live-dot"></div>
+      <span>GOLD (XAU/USD):
+        <strong id="tb-price">$3,240.50</strong>&nbsp;
+        <span id="tb-change" style="color:#81C784">▲ +0.42%</span>
+      </span>
+    </div>
+    <div class="top-bar-date" id="tb-date"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     HEADER
+     ════════════════════════════════════════════ -->
+<header>
+  <div class="header-inner">
+
+    <!-- Logo -->
+    <div class="logo" onclick="showHome()">
+      <div class="logo-icon">⬡</div>
+      <div class="logo-text">
+        <span class="logo-title">Gold Student Journal</span>
+        <span class="logo-sub">Mato Grosso do Sul · Brazil</span>
+      </div>
+    </div>
+
+    <!-- Desktop Nav -->
+    <nav id="main-nav">
+      <a href="#" class="active" onclick="showHome();return false;">Home</a>
+      <a href="#">Articles</a>
+      <a href="#">Gold Price</a>
+      <a href="#">Gold Calculator</a>
+      <a href="#">About Project</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <div class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- ════════════════════════════════════════════
+     HOMEPAGE
+     ════════════════════════════════════════════ -->
+<div class="homepage" id="homepage">
+
+  <!-- ── HERO ── -->
+  <div style="background:var(--white); border-bottom:1px solid var(--border);">
+    <div class="page-wrapper">
+      <div class="hero">
+        <div class="section-label">
+          <span>Featured Article</span>
+          <div class="rule"></div>
+        </div>
+
+        <div class="hero-grid">
+
+          <!-- Featured article card -->
+          <div class="hero-main">
+
+            <!-- LEFT: Image -->
+            <div class="hero-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1610375461246-83df859d849d?w=800&q=80"
+                alt="Gold bars stacked in a vault"
+              >
+              <div class="hero-badge">🏆 Editor's Pick</div>
+            </div>
+
+            <!-- RIGHT: Content (overflow hidden) -->
+            <div class="hero-content">
+              <div class="hero-category">Financial Education · Gold Markets</div>
+              <h1 class="hero-title">
+                Why Gold Has Been the World's Most Trusted Store of Value for Over 5,000 Years
+              </h1>
+              <p class="hero-excerpt">
+                From the treasuries of ancient Egypt to the vaults of modern central banks, gold's unique chemical
+                and symbolic properties have made it humanity's enduring financial anchor. This research explores
+                what makes gold irreplaceable in the modern economy.
+              </p>
+              <div class="hero-meta">
+                <div class="author-avatar">AM</div>
+                <div class="meta-text">
+                  <span class="meta-author">Ana Maria Oliveira</span>
+                  <span class="meta-date">3rd Year · Published March 10, 2025</span>
+                </div>
+              </div>
+              <a href="#" class="read-btn" onclick="showArticle();return false;">
+                Read Article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div><!-- /hero-content -->
+
+          </div><!-- /hero-main -->
+
+          <!-- Sidebar -->
+          <div class="sidebar">
+
+            <!-- Live Gold Price Widget -->
+            <div class="widget">
+              <div class="widget-header">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                </svg>
+                Live Gold Price
+              </div>
+              <div class="widget-body">
+                <div class="gold-price-main">
+                  <div>
+                    <div class="gp-value" id="gp-main">$3,240</div>
+                    <div class="gp-unit">per troy ounce (USD)</div>
+                  </div>
+                  <div class="gp-change" id="gp-change">▲ +0.42%</div>
+                </div>
+                <table class="gp-table">
+                  <tr><td class="gp-label">Open</td><td>$3,225.10</td></tr>
+                  <tr><td class="gp-label">High (24h)</td><td>$3,248.70</td></tr>
+                  <tr><td class="gp-label">Low (24h)</td><td>$3,218.30</td></tr>
+                  <tr><td class="gp-label">1 gram (USD)</td><td id="gp-gram">$104.15</td></tr>
+                  <tr><td class="gp-label">1 gram (BRL)</td><td id="gp-gram-brl">R$ 530.20</td></tr>
+                </table>
+                <p class="gp-note">⚠ Prices are simulated for educational purposes</p>
+              </div>
+            </div>
+
+            <!-- Gold Value Calculator -->
+            <div class="widget">
+              <div class="widget-header">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="4" y="2" width="16" height="20" rx="2"/>
+                  <line x1="8" y1="6" x2="16" y2="6"/>
+                  <line x1="8" y1="10" x2="16" y2="10"/>
+                  <line x1="8" y1="14" x2="12" y2="14"/>
+                </svg>
+                Gold Value Calculator
+              </div>
+              <div class="widget-body">
+                <div class="calc-row">
+                  <div class="calc-label">Weight</div>
+                  <input class="calc-input" type="number" id="calc-weight" placeholder="e.g. 10" min="0">
+                </div>
+                <div class="calc-row">
+                  <div class="calc-label">Unit</div>
+                  <select class="calc-select" id="calc-unit">
+                    <option value="gram">Grams (g)</option>
+                    <option value="oz">Troy Ounces (oz)</option>
+                    <option value="kg">Kilograms (kg)</option>
+                  </select>
+                </div>
+                <div class="calc-row">
+                  <div class="calc-label">Purity</div>
+                  <select class="calc-select" id="calc-purity">
+                    <option value="1">24k – Pure Gold (99.9%)</option>
+                    <option value="0.9167">22k – 91.67%</option>
+                    <option value="0.75">18k – 75.0%</option>
+                    <option value="0.585">14k – 58.5%</option>
+                  </select>
+                </div>
+                <div class="calc-row">
+                  <div class="calc-label">Currency</div>
+                  <select class="calc-select" id="calc-currency">
+                    <option value="usd">USD ($)</option>
+                    <option value="brl">BRL (R$)</option>
+                  </select>
+                </div>
+                <button class="calc-btn" onclick="calcGold()">Calculate Value</button>
+                <div class="calc-result" id="calc-result">
+                  <div class="calc-result-label">Estimated Value</div>
+                  <div class="calc-result-value" id="calc-result-val">—</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- AdSense 300×250 -->
+            <div class="ad-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 12h8M8 16h5"/>
+              </svg>
+              <span>Google AdSense</span>
+              <span style="font-size:10px">300 × 250 Ad Unit</span>
+            </div>
+
+          </div><!-- /sidebar -->
+        </div><!-- /hero-grid -->
+      </div><!-- /hero -->
+    </div><!-- /page-wrapper -->
+  </div>
+
+
+  <!-- ── LATEST ARTICLES + SIDEBAR ── -->
+  <div class="page-wrapper" style="padding-top:36px;">
+    <div class="main-content">
+
+      <!-- Article grid -->
+      <div class="articles-col">
+        <div class="section-label">
+          <span>Latest Student Articles</span>
+          <div class="rule"></div>
+        </div>
+        <div class="articles-grid">
+
+          <!-- Card 1 -->
+          <div class="article-card" onclick="showArticle()">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400&q=70" alt="Gold investment">
+            </div>
+            <div class="card-body">
+              <div class="card-category">Investment</div>
+              <div class="card-title">Gold vs. Bitcoin: Which Is a Better Inflation Hedge?</div>
+              <div class="card-excerpt">A comparative analysis of two very different stores of value and their roles in the modern portfolio.</div>
+              <div class="card-meta">
+                <div class="card-author">
+                  <div class="card-avatar">LC</div>
+                  <span class="card-author-name">Lucas Carvalho</span>
+                </div>
+                <span class="card-date">Mar 8</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="article-card">
+            <div class="card-img">
+              <img src="https://discoveryalert.com.au/wp-content/uploads/2026/02/d9bd2c67-7ee9-4c4b-b735-8e0298bc8da8-1024x572.jpg" alt="Gold mining">
+            </div>
+            <div class="card-body">
+              <div class="card-category">History</div>
+              <div class="card-title">The Brazilian Gold Rush: How Minas Gerais Shaped a Nation</div>
+              <div class="card-excerpt">The 18th-century discovery of gold in Brazil transformed colonial society and funded the Portuguese empire.</div>
+              <div class="card-meta">
+                <div class="card-author">
+                  <div class="card-avatar">RS</div>
+                  <span class="card-author-name">Rebeca Santos</span>
+                </div>
+                <span class="card-date">Mar 5</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="article-card">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=70" alt="Financial charts">
+            </div>
+            <div class="card-body">
+              <div class="card-category">Economics</div>
+              <div class="card-title">Central Banks Are Buying More Gold Than Ever — Here's Why</div>
+              <div class="card-excerpt">Global central bank gold purchases hit a 55-year high in 2022. We explore the motivations behind this trend.</div>
+              <div class="card-meta">
+                <div class="card-author">
+                  <div class="card-avatar">PF</div>
+                  <span class="card-author-name">Pedro Figueiredo</span>
+                </div>
+                <span class="card-date">Mar 2</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="article-card">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400&q=70" alt="Gold jewelry">
+            </div>
+            <div class="card-body">
+              <div class="card-category">Market Analysis</div>
+              <div class="card-title">Understanding Gold Futures: A Beginner's Guide to Commodity Trading</div>
+              <div class="card-excerpt">Futures contracts allow investors to speculate on gold prices without physically holding the metal.</div>
+              <div class="card-meta">
+                <div class="card-author">
+                  <div class="card-avatar">BM</div>
+                  <span class="card-author-name">Beatriz Melo</span>
+                </div>
+                <span class="card-date">Feb 28</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="article-card">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1612810806695-30f7a8258391?w=400&q=70" alt="Science lab">
+            </div>
+            <div class="card-body">
+              <div class="card-category">Science</div>
+              <div class="card-title">The Chemistry of Gold: Why Au Is So Chemically Unique</div>
+              <div class="card-excerpt">Gold's resistance to oxidation and its relativistic electron behavior make it uniquely valuable in finance and technology.</div>
+              <div class="card-meta">
+                <div class="card-author">
+                  <div class="card-avatar">GA</div>
+                  <span class="card-author-name">Gabriela Alves</span>
+                </div>
+                <span class="card-date">Feb 25</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="article-card">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1565688534245-05d6b5be184a?w=400&q=70" alt="Global economy">
+            </div>
+            <div class="card-body">
+              <div class="card-category">Global Economy</div>
+              <div class="card-title">The Gold Standard: Could the World Return to It?</div>
+              <div class="card-excerpt">Several economists have proposed a return to gold-backed currencies. We examine the arguments for and against.</div>
+              <div class="card-meta">
+                <div class="card-author">
+                  <div class="card-avatar">TV</div>
+                  <span class="card-author-name">Thiago Vieira</span>
+                </div>
+                <span class="card-date">Feb 20</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /articles-grid -->
+
+        <div class="text-center py-3">
+          <a href="#" class="read-btn d-inline-flex justify-content-center">View All Articles →</a>
+        </div>
+      </div><!-- /articles-col -->
+
+      <!-- Main sidebar -->
+      <div class="sidebar">
+
+        <!-- Recent Articles -->
+        <div class="list-widget">
+          <div class="list-widget-header">Recent Articles</div>
+          <div class="list-item">
+            <div class="list-thumb">
+              <img src="https://images.unsplash.com/photo-1610375461246-83df859d849d?w=120&q=60" alt="">
+            </div>
+            <div>
+              <div class="list-title">Why Gold Has Been the World's Most Trusted Store of Value</div>
+              <div class="list-meta">Ana Maria · Mar 10</div>
+            </div>
+          </div>
+          <div class="list-item">
+            <div class="list-thumb">
+              <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=120&q=60" alt="">
+            </div>
+            <div>
+              <div class="list-title">Gold vs. Bitcoin: Which Is a Better Inflation Hedge?</div>
+              <div class="list-meta">Lucas · Mar 8</div>
+            </div>
+          </div>
+          <div class="list-item">
+            <div class="list-thumb">
+              <img src="https://discoveryalert.com.au/wp-content/uploads/2026/02/d9bd2c67-7ee9-4c4b-b735-8e0298bc8da8-1024x572.jpg" alt="">
+            </div>
+            <div>
+              <div class="list-title">The Brazilian Gold Rush: Minas Gerais Shaped a Nation</div>
+              <div class="list-meta">Rebeca · Mar 5</div>
+            </div>
+          </div>
+          <div class="list-item">
+            <div class="list-thumb">
+              <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=120&q=60" alt="">
+            </div>
+            <div>
+              <div class="list-title">Central Banks Are Buying More Gold Than Ever</div>
+              <div class="list-meta">Pedro · Mar 2</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Popular Articles -->
+        <div class="list-widget">
+          <div class="list-widget-header">🔥 Popular This Month</div>
+          <div class="list-item">
+            <div style="width:28px;height:28px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;">#1</div>
+            <div>
+              <div class="list-title">The Chemistry of Gold: Why Au Is So Chemically Unique</div>
+              <div class="list-meta">Gabriela · 1,204 views</div>
+            </div>
+          </div>
+          <div class="list-item">
+            <div style="width:28px;height:28px;background:var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;">#2</div>
+            <div>
+              <div class="list-title">Gold vs. Bitcoin: Which Is a Better Inflation Hedge?</div>
+              <div class="list-meta">Lucas · 987 views</div>
+            </div>
+          </div>
+          <div class="list-item">
+            <div style="width:28px;height:28px;background:var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;">#3</div>
+            <div>
+              <div class="list-title">Understanding Gold Futures: A Beginner's Guide</div>
+              <div class="list-meta">Beatriz · 856 views</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AdSense 300×600 -->
+        <div class="ad-placeholder" style="min-height:600px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+          </svg>
+          <span>Google AdSense</span>
+          <span style="font-size:10px">300 × 600 Ad Unit</span>
+        </div>
+
+      </div><!-- /sidebar -->
+    </div><!-- /main-content -->
+  </div><!-- /page-wrapper -->
+
+</div><!-- /homepage -->
+
+
+<!-- ════════════════════════════════════════════
+     EDUCATION SECTION (always visible)
+     ════════════════════════════════════════════ -->
+<div class="edu-section" id="edu-section">
+  <div class="edu-inner">
+    <div>
+      <div class="edu-label">About This Project</div>
+      <h2 class="edu-title">Learning Finance Through the World's Most Enduring Asset</h2>
+      <p class="edu-body">
+        The <em>Gold Student Journal</em> is an educational initiative from a high school in Mato Grosso do Sul, Brazil.
+        Final-year students research and publish original articles about gold — its history, chemistry, economics,
+        and role in personal finance — as part of their English curriculum. The project runs for at least three years,
+        developing bilingual research, writing, and digital literacy skills.
+      </p>
+    </div>
+    <div class="edu-stats">
+      <div class="edu-stat"><div class="edu-stat-num">3+</div><div class="edu-stat-label">Years Running</div></div>
+      <div class="edu-stat"><div class="edu-stat-num">60+</div><div class="edu-stat-label">Student Authors</div></div>
+      <div class="edu-stat"><div class="edu-stat-num">120+</div><div class="edu-stat-label">Articles Published</div></div>
+      <div class="edu-stat"><div class="edu-stat-num">🇧🇷</div><div class="edu-stat-label">MS · Brazil</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     ARTICLE PAGE
+     ════════════════════════════════════════════ -->
+<div class="article-page" id="article-page">
+  <div class="page-wrapper">
+    <div class="breadcrumb">
+      <a href="#" onclick="showHome();return false;" style="color:var(--gold-dark)">Home</a>
+      <span>›</span>
+      <a href="#">Articles</a>
+      <span>›</span>
+      <span>Why Gold Has Been the World's Most Trusted Store of Value</span>
+    </div>
+
+    <div class="article-layout">
+      <!-- Main article -->
+      <article>
+        <div class="article-header">
+          <div class="article-cat">Financial Education · Gold Markets</div>
+          <h1 class="article-title">Why Gold Has Been the World's Most Trusted Store of Value for Over 5,000 Years</h1>
+          <div class="article-byline">
+            <div class="byline-avatar">AM</div>
+            <div>
+              <div class="byline-name">Ana Maria Oliveira</div>
+              <div class="byline-details">3rd Year Student · Published March 10, 2025 · 8 min read</div>
+            </div>
+            <div class="byline-tag">Student Research</div>
+          </div>
+        </div>
+
+        <div class="article-hero-img">
+          <img src="https://images.unsplash.com/photo-1610375461246-83df859d849d?w=900&q=80" alt="Gold bars in a vault">
+        </div>
+        <p class="article-img-caption">Gold bars stored in a central bank vault. Photo: Unsplash</p>
+
+        <div class="article-body">
+          <p>Gold has captivated humanity for millennia. Long before modern financial systems existed, ancient
+          civilizations recognized in this gleaming yellow metal a quality that few substances on Earth possess:
+          permanence. Unlike iron, which rusts, or copper, which corrodes, gold does not react with air or water.
+          It remains unchanged across centuries, even millennia. This chemical fact has profound financial implications.</p>
+
+          <h2>The Chemistry of Permanence</h2>
+          <p>Gold's atomic number is 79, placing it in Group 11 of the periodic table alongside silver and copper.
+          What makes gold exceptional is its electronegativity and relativistic effects — the electrons in its outer
+          shells move at speeds approaching the speed of light, contracting their orbits and making gold resistant
+          to losing electrons (oxidizing). In practical terms: a gold coin buried in the ground for 3,000 years
+          emerges looking almost identical to the day it was minted.</p>
+
+          <div class="highlight-box">
+            <strong>📚 Financial Vocabulary:</strong> A <em>store of value</em> is an asset that maintains its
+            purchasing power over time. For an asset to qualify, it must be durable, divisible, portable,
+            fungible, and scarce. Gold satisfies all five criteria naturally.
+          </div>
+
+          <h2>From the Pharaohs to the Federal Reserve</h2>
+          <p>The earliest recorded gold currency dates to Lydia (modern Turkey) around 600 BCE. But gold's monetary
+          role is far older — Egyptian pharaohs used gold weights as early as 3000 BCE. What's remarkable is the
+          continuity: the same properties that made gold valuable to an ancient merchant in Alexandria make it
+          valuable to a modern central bank in Frankfurt or Beijing.</p>
+
+          <blockquote>"Gold is money. Everything else is credit." — J.P. Morgan, testimony to the United States Congress, 1912</blockquote>
+
+          <h2>The Modern Relevance</h2>
+          <p>Today, central banks around the world hold over 35,000 tonnes of gold in reserve. In 2022 and 2023,
+          central bank gold purchases hit multi-decade highs, driven largely by emerging market economies seeking
+          to diversify away from the US dollar. This is not nostalgia — it is a calculated response to geopolitical
+          and monetary risks.</p>
+
+          <p>For Brazilian students in particular, understanding gold is especially relevant. Brazil is one of the
+          world's top-10 gold producers, with significant mining operations in Mato Grosso, Pará, and other states.
+          The decisions made by global gold markets directly affect employment, environmental policy, and state
+          revenues here at home.</p>
+
+          <h2>Conclusion</h2>
+          <p>Gold's 5,000-year track record as a store of value is not an accident of culture or myth — it is
+          grounded in physical and chemical reality. In a world of floating currencies, digital assets, and
+          monetary experimentation, gold continues to serve its ancient function: a reliable measure of value
+          that outlasts the governments and ideologies that issue paper money.</p>
+        </div>
+      </article>
+
+      <!-- Article sidebar -->
+      <div class="sidebar">
+        <div class="widget">
+          <div class="widget-header">Live Gold Price</div>
+          <div class="widget-body">
+            <div class="gold-price-main">
+              <div>
+                <div class="gp-value">$3,240</div>
+                <div class="gp-unit">per troy ounce (USD)</div>
+              </div>
+              <div class="gp-change">▲ +0.42%</div>
+            </div>
+            <table class="gp-table">
+              <tr><td class="gp-label">1 gram (USD)</td><td>$104.15</td></tr>
+              <tr><td class="gp-label">1 gram (BRL)</td><td>R$ 530.20</td></tr>
+            </table>
+            <p class="gp-note">⚠ Simulated for educational purposes</p>
+          </div>
+        </div>
+
+        <div class="widget">
+          <div class="widget-header">Gold Value Calculator</div>
+          <div class="widget-body">
+            <div class="calc-row">
+              <div class="calc-label">Weight (grams)</div>
+              <input class="calc-input" type="number" id="calc-weight2" placeholder="e.g. 10" min="0">
+            </div>
+            <div class="calc-row">
+              <div class="calc-label">Purity</div>
+              <select class="calc-select" id="calc-purity2">
+                <option value="1">24k – 99.9%</option>
+                <option value="0.9167">22k – 91.67%</option>
+                <option value="0.75">18k – 75%</option>
+              </select>
+            </div>
+            <button class="calc-btn" onclick="calcGold2()">Calculate (USD)</button>
+            <div class="calc-result" id="calc-result2">
+              <div class="calc-result-label">Estimated Value</div>
+              <div class="calc-result-value" id="calc-result-val2">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-widget">
+          <div class="list-widget-header">More Articles</div>
+          <div class="list-item">
+            <div class="list-thumb">
+              <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=120&q=60" alt="">
+            </div>
+            <div>
+              <div class="list-title">Gold vs. Bitcoin: Inflation Hedge Comparison</div>
+              <div class="list-meta">Lucas · Mar 8</div>
+            </div>
+          </div>
+          <div class="list-item">
+            <div class="list-thumb">
+              <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=120&q=60" alt="">
+            </div>
+            <div>
+              <div class="list-title">Why Central Banks Are Buying More Gold</div>
+              <div class="list-meta">Pedro · Mar 2</div>
+            </div>
+          </div>
+          <div class="list-item">
+            <div class="list-thumb">
+              <img src="https://images.unsplash.com/photo-1612810806695-30f7a8258391?w=120&q=60" alt="">
+            </div>
+            <div>
+              <div class="list-title">The Chemistry of Gold: Why Au Is Unique</div>
+              <div class="list-meta">Gabriela · Feb 25</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ad-placeholder" style="min-height:250px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+          </svg>
+          <span>Google AdSense</span>
+          <span style="font-size:10px">300 × 250</span>
+        </div>
+      </div><!-- /sidebar -->
+    </div><!-- /article-layout -->
+  </div><!-- /page-wrapper -->
+</div><!-- /article-page -->
+
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <div class="footer-logo-icon">⬡</div>
+          <span class="footer-logo-text">Gold Student Journal</span>
+        </div>
+        <p class="footer-desc">An educational publication by high school students in Mato Grosso do Sul, Brazil.
+        Students research and write about gold, financial markets, and economics as part of their English education curriculum.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Sections</div>
+        <ul class="footer-links">
+          <li><a href="#">All Articles</a></li>
+          <li><a href="#">Gold History</a></li>
+          <li><a href="#">Financial Education</a></li>
+          <li><a href="#">Market Analysis</a></li>
+          <li><a href="#">Science &amp; Chemistry</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Tools</div>
+        <ul class="footer-links">
+          <li><a href="#">Live Gold Price</a></li>
+          <li><a href="#">Gold Calculator</a></li>
+          <li><a href="#">Currency Converter</a></li>
+          <li><a href="#">Price History</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">About</div>
+        <ul class="footer-links">
+          <li><a href="#">About the Project</a></li>
+          <li><a href="#">Our Teachers</a></li>
+          <li><a href="#">Student Authors</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Dev- Shofiqur | All rights reserved</span>
+      <span class="footer-school">🏫 Escola Estadual · Mato Grosso do Sul, Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<div class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dark)" stroke-width="2.5">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
